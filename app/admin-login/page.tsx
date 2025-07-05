@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Eye, EyeOff, User, Lock, Mail, Phone, Briefcase, Building, MapPin, Star, Zap } from "lucide-react"
+import { Eye, EyeOff, User, Lock, Mail, Phone, Crown, Shield, Zap, Star } from 'lucide-react'
 import Link from "next/link"
 
-export default function AgentLoginPage() {
+export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [activeTab, setActiveTab] = useState("login")
@@ -22,98 +22,95 @@ export default function AgentLoginPage() {
     name: "",
     email: "",
     phone: "",
-    company: "",
-    agentId: "",
-    location: "",
+    adminCode: "",
+    department: "",
     password: "",
     confirmPassword: "",
   })
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Agent Login:", loginData)
+    console.log("Admin Login:", loginData)
   }
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Agent Register:", registerData)
+    console.log("Admin Register:", registerData)
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-500/12 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/12 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-yellow-400/12 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-500/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-yellow-400/15 rounded-full blur-3xl animate-pulse delay-500"></div>
 
-        {/* Professional floating elements */}
-        <div className="absolute top-20 left-20 w-3 h-3 bg-yellow-400 rounded-full animate-float-professional"></div>
-        <div className="absolute top-40 right-32 w-2 h-2 bg-amber-500 rounded-full animate-float-professional-delayed"></div>
-        <div className="absolute bottom-32 left-1/3 w-4 h-4 bg-yellow-300 rounded-full animate-float-professional"></div>
-        <div className="absolute bottom-20 right-20 w-3 h-3 bg-amber-400 rounded-full animate-float-professional-delayed"></div>
+        {/* Lightning effects */}
+        <div className="absolute top-10 left-10 w-1 h-20 bg-gradient-to-b from-yellow-400 to-transparent animate-lightning opacity-30"></div>
+        <div className="absolute top-32 right-16 w-1 h-16 bg-gradient-to-b from-amber-400 to-transparent animate-lightning-delayed opacity-40"></div>
+        <div className="absolute bottom-20 left-1/4 w-1 h-24 bg-gradient-to-b from-yellow-300 to-transparent animate-lightning opacity-35"></div>
 
-        {/* Business icons floating */}
-        <div className="absolute top-16 right-16 text-yellow-400/30 animate-float-icon">
-          <Briefcase className="w-6 h-6" />
-        </div>
-        <div className="absolute bottom-40 left-16 text-amber-500/30 animate-float-icon-delayed">
-          <Building className="w-5 h-5" />
-        </div>
+        {/* Floating particles */}
+        <div className="absolute top-20 left-20 w-3 h-3 bg-yellow-400 rounded-full animate-float-admin"></div>
+        <div className="absolute top-40 right-32 w-2 h-2 bg-amber-500 rounded-full animate-float-admin-delayed"></div>
+        <div className="absolute bottom-32 left-1/3 w-4 h-4 bg-yellow-300 rounded-full animate-float-admin"></div>
+        <div className="absolute bottom-20 right-20 w-3 h-3 bg-amber-400 rounded-full animate-float-admin-delayed"></div>
       </div>
 
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
           <div className="w-full max-w-md">
             {/* Header */}
-            <div className="text-center mb-8 animate-fade-in-agent">
-              <div className="w-24 h-24 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl transform hover:scale-110 transition-all duration-500 relative group">
-                <Briefcase className="w-12 h-12 text-black" />
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full blur opacity-50 animate-pulse group-hover:opacity-75 transition-opacity"></div>
-                <Star className="absolute -top-2 -right-2 w-6 h-6 text-yellow-300 animate-spin-professional" />
-                <Zap className="absolute -bottom-1 -left-1 w-5 h-5 text-amber-400 animate-bounce-subtle" />
+            <div className="text-center mb-8 animate-fade-in-admin">
+              <div className="w-28 h-28 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl transform hover:scale-110 transition-all duration-500 relative group">
+                <Crown className="w-14 h-14 text-black" />
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full blur opacity-60 animate-pulse group-hover:opacity-90 transition-opacity"></div>
+                <Star className="absolute -top-3 -right-3 w-8 h-8 text-yellow-300 animate-spin-slow" />
+                <Zap className="absolute -bottom-2 -left-2 w-6 h-6 text-amber-400 animate-bounce" />
               </div>
-              <h1 className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
-                Agent Portal
+              <h1 className="text-5xl font-bold text-white mb-2 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
+                Admin Portal
               </h1>
-              <p className="text-gray-300">Manage your travel business with excellence</p>
+              <p className="text-gray-300">Ultimate control and management access</p>
             </div>
 
             {/* Login/Register Card */}
-            <Card className="shadow-2xl border-0 bg-black/80 backdrop-blur-xl hover:bg-black/90 transition-all duration-500 border border-yellow-500/30 relative overflow-hidden">
-              {/* Card professional glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+            <Card className="shadow-2xl border-0 bg-black/85 backdrop-blur-xl hover:bg-black/95 transition-all duration-500 border-2 border-yellow-500/40 relative overflow-hidden">
+              {/* Card premium glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/15 to-amber-500/15 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute -top-1 -left-1 -right-1 -bottom-1 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-lg blur opacity-20 animate-pulse"></div>
 
               <CardHeader className="pb-4 relative z-10">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                  <TabsList className="grid w-full grid-cols-2 bg-gray-800/50 rounded-xl p-1 mb-6 border border-yellow-500/20">
+                  <TabsList className="grid w-full grid-cols-2 bg-gray-800/60 rounded-xl p-1 mb-6 border-2 border-yellow-500/30">
                     <TabsTrigger
                       value="login"
-                      className="rounded-lg transition-all duration-500 data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-400 data-[state=active]:to-amber-500 data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:shadow-yellow-500/50 text-gray-300 hover:text-white transform data-[state=active]:scale-105"
+                      className="rounded-lg transition-all duration-500 data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-400 data-[state=active]:to-amber-500 data-[state=active]:text-black data-[state=active]:shadow-2xl data-[state=active]:shadow-yellow-500/60 text-gray-300 hover:text-white transform data-[state=active]:scale-110 data-[state=active]:rotate-1"
                     >
-                      Agent Login
+                      Admin Login
                     </TabsTrigger>
                     <TabsTrigger
                       value="register"
-                      className="rounded-lg transition-all duration-500 data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-400 data-[state=active]:to-amber-500 data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:shadow-yellow-500/50 text-gray-300 hover:text-white transform data-[state=active]:scale-105"
+                      className="rounded-lg transition-all duration-500 data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-400 data-[state=active]:to-amber-500 data-[state=active]:text-black data-[state=active]:shadow-2xl data-[state=active]:shadow-yellow-500/60 text-gray-300 hover:text-white transform data-[state=active]:scale-110 data-[state=active]:-rotate-1"
                     >
-                      Join Us
+                      Register
                     </TabsTrigger>
                   </TabsList>
 
-                  <TabsContent value="login" className="space-y-6 animate-slide-in-professional-right">
+                  <TabsContent value="login" className="space-y-6 animate-slide-in-3d-right">
                     <form onSubmit={handleLogin} className="space-y-5">
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-sm font-medium text-gray-200">
-                          Agent Email
+                          Admin Email
                         </Label>
                         <div className="relative group">
                           <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
                           <Input
                             id="email"
                             type="email"
-                            placeholder="Enter your agent email"
-                            className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
+                            placeholder="Enter your admin email"
+                            className="pl-10 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 focus:ring-2 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/20"
                             value={loginData.email}
                             onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                             required
@@ -131,7 +128,7 @@ export default function AgentLoginPage() {
                             id="password"
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter your password"
-                            className="pl-10 pr-12 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
+                            className="pl-10 pr-12 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 focus:ring-2 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/20"
                             value={loginData.password}
                             onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                             required
@@ -166,18 +163,18 @@ export default function AgentLoginPage() {
 
                       <Button
                         type="submit"
-                        className="w-full h-12 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-xl shadow-2xl hover:shadow-yellow-500/50 transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group"
+                        className="w-full h-12 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 hover:from-yellow-500 hover:via-amber-600 hover:to-yellow-700 text-black font-bold rounded-xl shadow-2xl hover:shadow-yellow-500/60 transform hover:scale-[1.03] transition-all duration-300 relative overflow-hidden group"
                       >
                         <span className="relative z-10 flex items-center justify-center">
-                          <Briefcase className="w-5 h-5 mr-2" />
-                          Access Agent Dashboard
+                          <Crown className="w-5 h-5 mr-2" />
+                          Access Admin Dashboard
                         </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </Button>
                     </form>
                   </TabsContent>
 
-                  <TabsContent value="register" className="space-y-6 animate-slide-in-professional-left">
+                  <TabsContent value="register" className="space-y-6 animate-slide-in-3d-left">
                     <form onSubmit={handleRegister} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
@@ -190,7 +187,7 @@ export default function AgentLoginPage() {
                               id="name"
                               type="text"
                               placeholder="Your full name"
-                              className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
+                              className="pl-10 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 transition-all duration-300 hover:border-yellow-500/50"
                               value={registerData.name}
                               onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
                               required
@@ -199,18 +196,19 @@ export default function AgentLoginPage() {
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="agentId" className="text-sm font-medium text-gray-200">
-                            Agent ID
+                          <Label htmlFor="adminCode" className="text-sm font-medium text-gray-200">
+                            Admin Code
                           </Label>
                           <div className="relative group">
-                            <Briefcase className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
+                            <Shield className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
                             <Input
-                              id="agentId"
+                              id="adminCode"
                               type="text"
-                              placeholder="Agent ID (if existing)"
-                              className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
-                              value={registerData.agentId}
-                              onChange={(e) => setRegisterData({ ...registerData, agentId: e.target.value })}
+                              placeholder="Admin Access Code"
+                              className="pl-10 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 transition-all duration-300 hover:border-yellow-500/50"
+                              value={registerData.adminCode}
+                              onChange={(e) => setRegisterData({ ...registerData, adminCode: e.target.value })}
+                              required
                             />
                           </div>
                         </div>
@@ -218,15 +216,15 @@ export default function AgentLoginPage() {
 
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-sm font-medium text-gray-200">
-                          Business Email
+                          Email Address
                         </Label>
                         <div className="relative group">
                           <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
                           <Input
                             id="email"
                             type="email"
-                            placeholder="your.business@email.com"
-                            className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
+                            placeholder="admin@company.com"
+                            className="pl-10 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 transition-all duration-300 hover:border-yellow-500/50"
                             value={registerData.email}
                             onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                             required
@@ -245,7 +243,7 @@ export default function AgentLoginPage() {
                               id="phone"
                               type="tel"
                               placeholder="+60 12-345 6789"
-                              className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
+                              className="pl-10 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 transition-all duration-300 hover:border-yellow-500/50"
                               value={registerData.phone}
                               onChange={(e) => setRegisterData({ ...registerData, phone: e.target.value })}
                               required
@@ -254,39 +252,35 @@ export default function AgentLoginPage() {
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="company" className="text-sm font-medium text-gray-200">
-                            Company Name
+                          <Label htmlFor="department" className="text-sm font-medium text-gray-200">
+                            Department
                           </Label>
-                          <div className="relative group">
-                            <Building className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
-                            <Input
-                              id="company"
-                              type="text"
-                              placeholder="Your company name"
-                              className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
-                              value={registerData.company}
-                              onChange={(e) => setRegisterData({ ...registerData, company: e.target.value })}
-                              required
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="location" className="text-sm font-medium text-gray-200">
-                          Business Location
-                        </Label>
-                        <div className="relative group">
-                          <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
-                          <Input
-                            id="location"
-                            type="text"
-                            placeholder="City, State"
-                            className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
-                            value={registerData.location}
-                            onChange={(e) => setRegisterData({ ...registerData, location: e.target.value })}
+                          <select
+                            id="department"
+                            className="w-full h-12 px-3 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white transition-all duration-300 hover:border-yellow-500/50"
+                            value={registerData.department}
+                            onChange={(e) => setRegisterData({ ...registerData, department: e.target.value })}
                             required
-                          />
+                          >
+                            <option value="" className="bg-gray-800">
+                              Select Department
+                            </option>
+                            <option value="executive" className="bg-gray-800">
+                              Executive
+                            </option>
+                            <option value="operations" className="bg-gray-800">
+                              Operations
+                            </option>
+                            <option value="finance" className="bg-gray-800">
+                              Finance
+                            </option>
+                            <option value="it" className="bg-gray-800">
+                              IT & Systems
+                            </option>
+                            <option value="hr" className="bg-gray-800">
+                              Human Resources
+                            </option>
+                          </select>
                         </div>
                       </div>
 
@@ -301,7 +295,7 @@ export default function AgentLoginPage() {
                               id="password"
                               type={showPassword ? "text" : "password"}
                               placeholder="Create password"
-                              className="pl-10 pr-12 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
+                              className="pl-10 pr-12 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 transition-all duration-300 hover:border-yellow-500/50"
                               value={registerData.password}
                               onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
                               required
@@ -326,7 +320,7 @@ export default function AgentLoginPage() {
                               id="confirmPassword"
                               type={showConfirmPassword ? "text" : "password"}
                               placeholder="Confirm password"
-                              className="pl-10 pr-12 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
+                              className="pl-10 pr-12 h-12 bg-gray-800/60 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 transition-all duration-300 hover:border-yellow-500/50"
                               value={registerData.confirmPassword}
                               onChange={(e) => setRegisterData({ ...registerData, confirmPassword: e.target.value })}
                               required
@@ -354,20 +348,20 @@ export default function AgentLoginPage() {
                             href="/terms"
                             className="text-yellow-400 hover:text-yellow-300 font-medium transition-colors"
                           >
-                            Agent Terms & Conditions
+                            Terms & Conditions
                           </Link>
                         </span>
                       </div>
 
                       <Button
                         type="submit"
-                        className="w-full h-12 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-xl shadow-2xl hover:shadow-yellow-500/50 transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group"
+                        className="w-full h-12 bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 hover:from-yellow-500 hover:via-amber-600 hover:to-yellow-700 text-black font-bold rounded-xl shadow-2xl hover:shadow-yellow-500/60 transform hover:scale-[1.03] transition-all duration-300 relative overflow-hidden group"
                       >
                         <span className="relative z-10 flex items-center justify-center">
-                          <Briefcase className="w-5 h-5 mr-2" />
-                          Join as Agent
+                          <Crown className="w-5 h-5 mr-2" />
+                          Register as Admin
                         </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </Button>
                     </form>
                   </TabsContent>
@@ -380,7 +374,7 @@ export default function AgentLoginPage() {
               <p className="text-gray-300">
                 Need help?{" "}
                 <Link href="/contact" className="text-yellow-400 hover:text-yellow-300 font-medium transition-colors">
-                  Contact Agent Support
+                  Contact System Administrator
                 </Link>
               </p>
             </div>
@@ -389,97 +383,88 @@ export default function AgentLoginPage() {
       </div>
 
       <style jsx>{`
-        @keyframes fade-in-agent {
-          from { opacity: 0; transform: translateY(-25px) scale(0.95); }
+        @keyframes fade-in-admin {
+          from { opacity: 0; transform: translateY(-30px) scale(0.9); }
           to { opacity: 1; transform: translateY(0) scale(1); }
         }
         
-        @keyframes slide-in-professional-right {
+        @keyframes slide-in-3d-right {
           from { 
             opacity: 0; 
-            transform: translateX(35px) scale(0.95); 
+            transform: translateX(40px) rotateY(20deg) scale(0.9); 
           }
           to { 
             opacity: 1; 
-            transform: translateX(0) scale(1); 
+            transform: translateX(0) rotateY(0deg) scale(1); 
           }
         }
         
-        @keyframes slide-in-professional-left {
+        @keyframes slide-in-3d-left {
           from { 
             opacity: 0; 
-            transform: translateX(-35px) scale(0.95); 
+            transform: translateX(-40px) rotateY(-20deg) scale(0.9); 
           }
           to { 
             opacity: 1; 
-            transform: translateX(0) scale(1); 
+            transform: translateX(0) rotateY(0deg) scale(1); 
           }
         }
         
-        @keyframes float-professional {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-18px) rotate(90deg); }
+        @keyframes float-admin {
+          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+          50% { transform: translateY(-25px) rotate(180deg) scale(1.1); }
         }
         
-        @keyframes float-professional-delayed {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-25px) rotate(-90deg); }
+        @keyframes float-admin-delayed {
+          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+          50% { transform: translateY(-35px) rotate(-180deg) scale(1.2); }
         }
         
-        @keyframes float-icon {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-12px) rotate(15deg); }
+        @keyframes lightning {
+          0%, 90%, 100% { opacity: 0; }
+          5%, 10% { opacity: 1; }
         }
         
-        @keyframes float-icon-delayed {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(-15deg); }
+        @keyframes lightning-delayed {
+          0%, 85%, 100% { opacity: 0; }
+          15%, 20% { opacity: 1; }
         }
         
-        @keyframes spin-professional {
+        @keyframes spin-slow {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
         
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
+        .animate-fade-in-admin {
+          animation: fade-in-admin 1s ease-out;
         }
         
-        .animate-fade-in-agent {
-          animation: fade-in-agent 0.9s ease-out;
+        .animate-slide-in-3d-right {
+          animation: slide-in-3d-right 0.8s ease-out;
         }
         
-        .animate-slide-in-professional-right {
-          animation: slide-in-professional-right 0.7s ease-out;
+        .animate-slide-in-3d-left {
+          animation: slide-in-3d-left 0.8s ease-out;
         }
         
-        .animate-slide-in-professional-left {
-          animation: slide-in-professional-left 0.7s ease-out;
+        .animate-float-admin {
+          animation: float-admin 7s ease-in-out infinite;
         }
         
-        .animate-float-professional {
-          animation: float-professional 6s ease-in-out infinite;
+        .animate-float-admin-delayed {
+          animation: float-admin-delayed 9s ease-in-out infinite;
         }
         
-        .animate-float-professional-delayed {
-          animation: float-professional-delayed 8s ease-in-out infinite;
+        .animate-lightning {
+          animation: lightning 4s ease-in-out infinite;
         }
         
-        .animate-float-icon {
-          animation: float-icon 5s ease-in-out infinite;
+        .animate-lightning-delayed {
+          animation: lightning-delayed 6s ease-in-out infinite;
         }
         
-        .animate-float-icon-delayed {
-          animation: float-icon-delayed 7s ease-in-out infinite;
-        }
-        
-        .animate-spin-professional {
-          animation: spin-professional 12s linear infinite;
-        }
-        
-        .animate-bounce-subtle {
-          animation: bounce-subtle 2s ease-in-out infinite;
+        .animate-spin-slow {
+          animation: spin-slow 10s linear infinite;
         }
       `}</style>
     </div>

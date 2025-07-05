@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Eye, EyeOff, User, Lock, Mail, Phone, Briefcase, Building, MapPin, Star, Zap } from "lucide-react"
+import { Eye, EyeOff, User, Lock, Mail, Phone, Shield, Users, Sparkles } from 'lucide-react'
 import Link from "next/link"
 
-export default function AgentLoginPage() {
+export default function StaffLoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [activeTab, setActiveTab] = useState("login")
@@ -22,66 +22,56 @@ export default function AgentLoginPage() {
     name: "",
     email: "",
     phone: "",
-    company: "",
-    agentId: "",
-    location: "",
+    staffId: "",
+    department: "",
     password: "",
     confirmPassword: "",
   })
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Agent Login:", loginData)
+    console.log("Staff Login:", loginData)
   }
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Agent Register:", registerData)
+    console.log("Staff Register:", registerData)
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-500/12 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/12 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-yellow-400/12 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-yellow-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
 
-        {/* Professional floating elements */}
-        <div className="absolute top-20 left-20 w-3 h-3 bg-yellow-400 rounded-full animate-float-professional"></div>
-        <div className="absolute top-40 right-32 w-2 h-2 bg-amber-500 rounded-full animate-float-professional-delayed"></div>
-        <div className="absolute bottom-32 left-1/3 w-4 h-4 bg-yellow-300 rounded-full animate-float-professional"></div>
-        <div className="absolute bottom-20 right-20 w-3 h-3 bg-amber-400 rounded-full animate-float-professional-delayed"></div>
-
-        {/* Business icons floating */}
-        <div className="absolute top-16 right-16 text-yellow-400/30 animate-float-icon">
-          <Briefcase className="w-6 h-6" />
-        </div>
-        <div className="absolute bottom-40 left-16 text-amber-500/30 animate-float-icon-delayed">
-          <Building className="w-5 h-5" />
-        </div>
+        {/* Floating particles */}
+        <div className="absolute top-20 left-20 w-2 h-2 bg-yellow-400 rounded-full animate-float"></div>
+        <div className="absolute top-40 right-32 w-1 h-1 bg-amber-500 rounded-full animate-float-delayed"></div>
+        <div className="absolute bottom-32 left-1/3 w-3 h-3 bg-yellow-300 rounded-full animate-float"></div>
+        <div className="absolute bottom-20 right-20 w-2 h-2 bg-amber-400 rounded-full animate-float-delayed"></div>
       </div>
 
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
           <div className="w-full max-w-md">
             {/* Header */}
-            <div className="text-center mb-8 animate-fade-in-agent">
+            <div className="text-center mb-8 animate-fade-in">
               <div className="w-24 h-24 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl transform hover:scale-110 transition-all duration-500 relative group">
-                <Briefcase className="w-12 h-12 text-black" />
+                <Users className="w-12 h-12 text-black" />
                 <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full blur opacity-50 animate-pulse group-hover:opacity-75 transition-opacity"></div>
-                <Star className="absolute -top-2 -right-2 w-6 h-6 text-yellow-300 animate-spin-professional" />
-                <Zap className="absolute -bottom-1 -left-1 w-5 h-5 text-amber-400 animate-bounce-subtle" />
+                <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-yellow-300 animate-spin-slow" />
               </div>
               <h1 className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
-                Agent Portal
+                Staff Portal
               </h1>
-              <p className="text-gray-300">Manage your travel business with excellence</p>
+              <p className="text-gray-300">Access your staff dashboard and manage operations</p>
             </div>
 
             {/* Login/Register Card */}
             <Card className="shadow-2xl border-0 bg-black/80 backdrop-blur-xl hover:bg-black/90 transition-all duration-500 border border-yellow-500/30 relative overflow-hidden">
-              {/* Card professional glow effect */}
+              {/* Card glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
 
               <CardHeader className="pb-4 relative z-10">
@@ -91,28 +81,28 @@ export default function AgentLoginPage() {
                       value="login"
                       className="rounded-lg transition-all duration-500 data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-400 data-[state=active]:to-amber-500 data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:shadow-yellow-500/50 text-gray-300 hover:text-white transform data-[state=active]:scale-105"
                     >
-                      Agent Login
+                      Staff Login
                     </TabsTrigger>
                     <TabsTrigger
                       value="register"
                       className="rounded-lg transition-all duration-500 data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-400 data-[state=active]:to-amber-500 data-[state=active]:text-black data-[state=active]:shadow-lg data-[state=active]:shadow-yellow-500/50 text-gray-300 hover:text-white transform data-[state=active]:scale-105"
                     >
-                      Join Us
+                      Register
                     </TabsTrigger>
                   </TabsList>
 
-                  <TabsContent value="login" className="space-y-6 animate-slide-in-professional-right">
+                  <TabsContent value="login" className="space-y-6 animate-slide-in-right">
                     <form onSubmit={handleLogin} className="space-y-5">
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-sm font-medium text-gray-200">
-                          Agent Email
+                          Staff Email
                         </Label>
                         <div className="relative group">
                           <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
                           <Input
                             id="email"
                             type="email"
-                            placeholder="Enter your agent email"
+                            placeholder="Enter your staff email"
                             className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
                             value={loginData.email}
                             onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
@@ -168,16 +158,13 @@ export default function AgentLoginPage() {
                         type="submit"
                         className="w-full h-12 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-xl shadow-2xl hover:shadow-yellow-500/50 transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group"
                       >
-                        <span className="relative z-10 flex items-center justify-center">
-                          <Briefcase className="w-5 h-5 mr-2" />
-                          Access Agent Dashboard
-                        </span>
+                        <span className="relative z-10">Access Staff Dashboard</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </Button>
                     </form>
                   </TabsContent>
 
-                  <TabsContent value="register" className="space-y-6 animate-slide-in-professional-left">
+                  <TabsContent value="register" className="space-y-6 animate-slide-in-left">
                     <form onSubmit={handleRegister} className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
@@ -199,18 +186,19 @@ export default function AgentLoginPage() {
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="agentId" className="text-sm font-medium text-gray-200">
-                            Agent ID
+                          <Label htmlFor="staffId" className="text-sm font-medium text-gray-200">
+                            Staff ID
                           </Label>
                           <div className="relative group">
-                            <Briefcase className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
+                            <Shield className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
                             <Input
-                              id="agentId"
+                              id="staffId"
                               type="text"
-                              placeholder="Agent ID (if existing)"
+                              placeholder="Staff ID"
                               className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
-                              value={registerData.agentId}
-                              onChange={(e) => setRegisterData({ ...registerData, agentId: e.target.value })}
+                              value={registerData.staffId}
+                              onChange={(e) => setRegisterData({ ...registerData, staffId: e.target.value })}
+                              required
                             />
                           </div>
                         </div>
@@ -218,14 +206,14 @@ export default function AgentLoginPage() {
 
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-sm font-medium text-gray-200">
-                          Business Email
+                          Email Address
                         </Label>
                         <div className="relative group">
                           <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
                           <Input
                             id="email"
                             type="email"
-                            placeholder="your.business@email.com"
+                            placeholder="your.email@company.com"
                             className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
                             value={registerData.email}
                             onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
@@ -254,39 +242,35 @@ export default function AgentLoginPage() {
                         </div>
 
                         <div className="space-y-2">
-                          <Label htmlFor="company" className="text-sm font-medium text-gray-200">
-                            Company Name
+                          <Label htmlFor="department" className="text-sm font-medium text-gray-200">
+                            Department
                           </Label>
-                          <div className="relative group">
-                            <Building className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
-                            <Input
-                              id="company"
-                              type="text"
-                              placeholder="Your company name"
-                              className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
-                              value={registerData.company}
-                              onChange={(e) => setRegisterData({ ...registerData, company: e.target.value })}
-                              required
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="location" className="text-sm font-medium text-gray-200">
-                          Business Location
-                        </Label>
-                        <div className="relative group">
-                          <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400 group-focus-within:text-yellow-400 transition-colors duration-300" />
-                          <Input
-                            id="location"
-                            type="text"
-                            placeholder="City, State"
-                            className="pl-10 h-12 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white placeholder:text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-yellow-500/50"
-                            value={registerData.location}
-                            onChange={(e) => setRegisterData({ ...registerData, location: e.target.value })}
+                          <select
+                            id="department"
+                            className="w-full h-12 px-3 bg-gray-800/50 border-2 border-gray-700 rounded-xl focus:border-yellow-500 focus:ring-yellow-500 text-white transition-all duration-300 hover:border-yellow-500/50"
+                            value={registerData.department}
+                            onChange={(e) => setRegisterData({ ...registerData, department: e.target.value })}
                             required
-                          />
+                          >
+                            <option value="" className="bg-gray-800">
+                              Select Department
+                            </option>
+                            <option value="operations" className="bg-gray-800">
+                              Operations
+                            </option>
+                            <option value="customer-service" className="bg-gray-800">
+                              Customer Service
+                            </option>
+                            <option value="finance" className="bg-gray-800">
+                              Finance
+                            </option>
+                            <option value="marketing" className="bg-gray-800">
+                              Marketing
+                            </option>
+                            <option value="hr" className="bg-gray-800">
+                              Human Resources
+                            </option>
+                          </select>
                         </div>
                       </div>
 
@@ -354,7 +338,7 @@ export default function AgentLoginPage() {
                             href="/terms"
                             className="text-yellow-400 hover:text-yellow-300 font-medium transition-colors"
                           >
-                            Agent Terms & Conditions
+                            Terms & Conditions
                           </Link>
                         </span>
                       </div>
@@ -363,10 +347,7 @@ export default function AgentLoginPage() {
                         type="submit"
                         className="w-full h-12 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 text-black font-semibold rounded-xl shadow-2xl hover:shadow-yellow-500/50 transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group"
                       >
-                        <span className="relative z-10 flex items-center justify-center">
-                          <Briefcase className="w-5 h-5 mr-2" />
-                          Join as Agent
-                        </span>
+                        <span className="relative z-10">Register as Staff</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </Button>
                     </form>
@@ -380,7 +361,7 @@ export default function AgentLoginPage() {
               <p className="text-gray-300">
                 Need help?{" "}
                 <Link href="/contact" className="text-yellow-400 hover:text-yellow-300 font-medium transition-colors">
-                  Contact Agent Support
+                  Contact IT Support
                 </Link>
               </p>
             </div>
@@ -389,97 +370,58 @@ export default function AgentLoginPage() {
       </div>
 
       <style jsx>{`
-        @keyframes fade-in-agent {
-          from { opacity: 0; transform: translateY(-25px) scale(0.95); }
-          to { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes slide-in-professional-right {
-          from { 
-            opacity: 0; 
-            transform: translateX(35px) scale(0.95); 
-          }
-          to { 
-            opacity: 1; 
-            transform: translateX(0) scale(1); 
-          }
+        @keyframes slide-in-right {
+          from { opacity: 0; transform: translateX(30px) scale(0.95); }
+          to { opacity: 1; transform: translateX(0) scale(1); }
         }
         
-        @keyframes slide-in-professional-left {
-          from { 
-            opacity: 0; 
-            transform: translateX(-35px) scale(0.95); 
-          }
-          to { 
-            opacity: 1; 
-            transform: translateX(0) scale(1); 
-          }
+        @keyframes slide-in-left {
+          from { opacity: 0; transform: translateX(-30px) scale(0.95); }
+          to { opacity: 1; transform: translateX(0) scale(1); }
         }
         
-        @keyframes float-professional {
+        @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-18px) rotate(90deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
         }
         
-        @keyframes float-professional-delayed {
+        @keyframes float-delayed {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-25px) rotate(-90deg); }
+          50% { transform: translateY(-30px) rotate(-180deg); }
         }
         
-        @keyframes float-icon {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-12px) rotate(15deg); }
-        }
-        
-        @keyframes float-icon-delayed {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(-15deg); }
-        }
-        
-        @keyframes spin-professional {
+        @keyframes spin-slow {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
         
-        @keyframes bounce-subtle {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
+        .animate-fade-in {
+          animation: fade-in 0.8s ease-out;
         }
         
-        .animate-fade-in-agent {
-          animation: fade-in-agent 0.9s ease-out;
+        .animate-slide-in-right {
+          animation: slide-in-right 0.6s ease-out;
         }
         
-        .animate-slide-in-professional-right {
-          animation: slide-in-professional-right 0.7s ease-out;
+        .animate-slide-in-left {
+          animation: slide-in-left 0.6s ease-out;
         }
         
-        .animate-slide-in-professional-left {
-          animation: slide-in-professional-left 0.7s ease-out;
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
         }
         
-        .animate-float-professional {
-          animation: float-professional 6s ease-in-out infinite;
+        .animate-float-delayed {
+          animation: float-delayed 8s ease-in-out infinite;
         }
         
-        .animate-float-professional-delayed {
-          animation: float-professional-delayed 8s ease-in-out infinite;
-        }
-        
-        .animate-float-icon {
-          animation: float-icon 5s ease-in-out infinite;
-        }
-        
-        .animate-float-icon-delayed {
-          animation: float-icon-delayed 7s ease-in-out infinite;
-        }
-        
-        .animate-spin-professional {
-          animation: spin-professional 12s linear infinite;
-        }
-        
-        .animate-bounce-subtle {
-          animation: bounce-subtle 2s ease-in-out infinite;
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
         }
       `}</style>
     </div>
