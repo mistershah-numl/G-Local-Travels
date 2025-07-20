@@ -1,5 +1,5 @@
-import AgentEnrollment from "@/agent-enrollment"
+import AgentEnrollmentManagement from "@/components/agent-enrollment"
 
-export default function Page() {
-  return <AgentEnrollment />
+export default function AgentEnrollmentPage() {
+  return <AgentEnrollmentManagement />
 }

@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import {
   User,
@@ -19,8 +21,8 @@ import {
   Shield,
   RefreshCw,
   Award,
+  Trash2,
 } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -171,15 +173,15 @@ export default function AgentEnrollmentManagement() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-gold-600 text-gold-50"
       case "under_review":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-600 text-blue-50"
       case "approved":
-        return "bg-green-100 text-green-800"
+        return "bg-green-600 text-green-50"
       case "rejected":
-        return "bg-red-100 text-red-800"
+        return "bg-red-600 text-red-50"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-600 text-gray-50"
     }
   }
 
@@ -202,46 +204,46 @@ export default function AgentEnrollmentManagement() {
     switch (status) {
       case "verified":
       case "completed":
-        return "bg-green-100 text-green-800"
+        return "bg-green-600 text-green-50"
       case "pending":
       case "in_progress":
-        return "bg-yellow-100 text-yellow-800"
+        return "bg-gold-600 text-gold-50"
       case "failed":
-        return "bg-red-100 text-red-800"
+        return "bg-red-600 text-red-50"
       case "not_started":
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-600 text-gray-50"
       case "not_applicable":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-600 text-blue-50"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-600 text-gray-50"
     }
   }
 
   const getDocumentStatusColor = (status: string) => {
     switch (status) {
       case "uploaded":
-        return "bg-green-100 text-green-800"
+        return "bg-green-600 text-green-50"
       case "not_uploaded":
-        return "bg-red-100 text-red-800"
+        return "bg-red-600 text-red-50"
       case "not_applicable":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-600 text-blue-50"
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-600 text-gray-50"
     }
   }
 
   const filteredApplications = applications.filter((app) => selectedStatus === "all" || app.status === selectedStatus)
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6 bg-gradient-to-br from-black via-gray-900 to-black text-gold-100 min-h-screen">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">Agent Enrollment Management</h2>
+        <h2 className="text-3xl font-bold text-gold-500">Agent Enrollment Management</h2>
         <div className="flex items-center space-x-2">
           <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] bg-black border-gold-700 text-gold-100">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-black border-gold-700 text-gold-100">
               <SelectItem value="all">All Applications</SelectItem>
               <SelectItem value="pending">Pending Review</SelectItem>
               <SelectItem value="under_review">Under Review</SelectItem>
@@ -250,10 +252,16 @@ export default function AgentEnrollmentManagement() {
             </SelectContent>
           </Select>
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
-            <Input className="pl-9 w-[250px]" placeholder="Search applications..." />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gold-500" />
+            <Input
+              className="pl-9 w-[250px] bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
+              placeholder="Search applications..."
+            />
           </div>
-          <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => setShowEnrollmentForm(true)}>
+          <Button
+            className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-black font-semibold"
+            onClick={() => setShowEnrollmentForm(true)}
+          >
             <Plus className="w-4 h-4 mr-2" />
             New Application
           </Button>
@@ -262,100 +270,104 @@ export default function AgentEnrollmentManagement() {
 
       {/* Application Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
+        <Card className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gold-700 shadow-2xl shadow-gold-500/20 transform hover:scale-105 transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-500">Pending Review</p>
-                <h3 className="text-2xl font-bold text-yellow-600">
+                <p className="text-sm font-medium text-gold-300">Pending Review</p>
+                <h3 className="text-2xl font-bold text-gold-500">
                   {applications.filter((a) => a.status === "pending").length}
                 </h3>
               </div>
-              <Clock className="w-8 h-8 text-yellow-600" />
+              <Clock className="w-8 h-8 text-gold-500" />
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gold-700 shadow-2xl shadow-gold-500/20 transform hover:scale-105 transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-500">Under Review</p>
-                <h3 className="text-2xl font-bold text-blue-600">
+                <p className="text-sm font-medium text-gold-300">Under Review</p>
+                <h3 className="text-2xl font-bold text-blue-500">
                   {applications.filter((a) => a.status === "under_review").length}
                 </h3>
               </div>
-              <Eye className="w-8 h-8 text-blue-600" />
+              <Eye className="w-8 h-8 text-blue-500" />
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gold-700 shadow-2xl shadow-gold-500/20 transform hover:scale-105 transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-500">Approved</p>
-                <h3 className="text-2xl font-bold text-green-600">
+                <p className="text-sm font-medium text-gold-300">Approved</p>
+                <h3 className="text-2xl font-bold text-green-500">
                   {applications.filter((a) => a.status === "approved").length}
                 </h3>
               </div>
-              <CheckCircle className="w-8 h-8 text-green-600" />
+              <CheckCircle className="w-8 h-8 text-green-500" />
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gold-700 shadow-2xl shadow-gold-500/20 transform hover:scale-105 transition-all duration-300">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-500">Rejected</p>
-                <h3 className="text-2xl font-bold text-red-600">
+                <p className="text-sm font-medium text-gold-300">Rejected</p>
+                <h3 className="text-2xl font-bold text-red-500">
                   {applications.filter((a) => a.status === "rejected").length}
                 </h3>
               </div>
-              <XCircle className="w-8 h-8 text-red-600" />
+              <XCircle className="w-8 h-8 text-red-500" />
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Applications Table */}
-      <Card>
+      <Card className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gold-700 shadow-2xl shadow-gold-500/20">
         <CardContent className="p-0">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>Application ID</TableHead>
-                <TableHead>Applicant</TableHead>
-                <TableHead>Application Date</TableHead>
-                <TableHead>Completion</TableHead>
-                <TableHead>Business Type</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+              <TableRow className="border-gold-700">
+                <TableHead className="text-gold-300">Application ID</TableHead>
+                <TableHead className="text-gold-300">Applicant</TableHead>
+                <TableHead className="text-gold-300">Application Date</TableHead>
+                <TableHead className="text-gold-300">Completion</TableHead>
+                <TableHead className="text-gold-300">Business Type</TableHead>
+                <TableHead className="text-gold-300">Status</TableHead>
+                <TableHead className="text-right text-gold-300">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredApplications.map((application) => (
-                <TableRow key={application.id}>
-                  <TableCell className="font-medium">{application.id}</TableCell>
+                <TableRow key={application.id} className="border-gold-800 hover:bg-gold-900/10">
+                  <TableCell className="font-medium text-gold-100">{application.id}</TableCell>
                   <TableCell>
                     <div>
-                      <div className="font-medium">{application.applicantName}</div>
-                      <div className="text-sm text-gray-500">{application.email}</div>
+                      <div className="font-medium text-gold-100">{application.applicantName}</div>
+                      <div className="text-sm text-gold-300">{application.email}</div>
                     </div>
                   </TableCell>
-                  <TableCell>{application.applicationDate}</TableCell>
+                  <TableCell className="text-gold-300">{application.applicationDate}</TableCell>
                   <TableCell>
                     <div className="flex items-center space-x-2">
-                      <Progress value={application.completionPercentage} className="h-2 w-16" />
-                      <span className="text-sm">{application.completionPercentage}%</span>
+                      <Progress
+                        value={application.completionPercentage}
+                        className="h-2 w-16 bg-gold-900"
+                        indicatorClassName="bg-gold-500"
+                      />
+                      <span className="text-sm text-gold-100">{application.completionPercentage}%</span>
                     </div>
                   </TableCell>
                   <TableCell>
                     {application.hasBusinessRegistration ? (
                       <div>
-                        <div className="font-medium text-sm">{application.companyName}</div>
-                        <Badge className="bg-blue-100 text-blue-800 text-xs">Registered Business</Badge>
+                        <div className="font-medium text-sm text-gold-100">{application.companyName}</div>
+                        <Badge className="bg-gold-600 text-black text-xs">Registered Business</Badge>
                       </div>
                     ) : (
-                      <Badge className="bg-gray-100 text-gray-800 text-xs">Individual</Badge>
+                      <Badge className="bg-gray-600 text-gray-50 text-xs">Individual</Badge>
                     )}
                   </TableCell>
                   <TableCell>
@@ -368,7 +380,12 @@ export default function AgentEnrollmentManagement() {
                     </div>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button variant="ghost" size="sm" onClick={() => handleViewApplication(application)}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-gold-300 hover:bg-gold-900/20 hover:text-gold-100"
+                      onClick={() => handleViewApplication(application)}
+                    >
                       <Eye className="w-4 h-4 mr-1" />
                       Review
                     </Button>
@@ -386,63 +403,82 @@ export default function AgentEnrollmentManagement() {
       {/* Application Review Dialog */}
       {currentApplication && (
         <Dialog open={showApplicationDialog} onOpenChange={setShowApplicationDialog}>
-          <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gold-700 text-gold-100">
             <DialogHeader>
-              <DialogTitle>Application Review - {currentApplication.applicantName}</DialogTitle>
+              <DialogTitle className="text-gold-500">
+                Application Review - {currentApplication.applicantName}
+              </DialogTitle>
             </DialogHeader>
-
             <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="documents">Documents</TabsTrigger>
-                <TabsTrigger value="verification">Verification</TabsTrigger>
-                <TabsTrigger value="actions">Actions</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-4 bg-gold-900/20 border-gold-700">
+                <TabsTrigger
+                  value="overview"
+                  className="data-[state=active]:bg-gold-600 data-[state=active]:text-black text-gold-100"
+                >
+                  Overview
+                </TabsTrigger>
+                <TabsTrigger
+                  value="documents"
+                  className="data-[state=active]:bg-gold-600 data-[state=active]:text-black text-gold-100"
+                >
+                  Documents
+                </TabsTrigger>
+                <TabsTrigger
+                  value="verification"
+                  className="data-[state=active]:bg-gold-600 data-[state=active]:text-black text-gold-100"
+                >
+                  Verification
+                </TabsTrigger>
+                <TabsTrigger
+                  value="actions"
+                  className="data-[state=active]:bg-gold-600 data-[state=active]:text-black text-gold-100"
+                >
+                  Actions
+                </TabsTrigger>
               </TabsList>
-
-              <TabsContent value="overview" className="space-y-4">
+              <TabsContent value="overview" className="space-y-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card>
+                  <Card className="bg-black border-gold-700 text-gold-100">
                     <CardHeader>
-                      <CardTitle className="text-lg">Applicant Information</CardTitle>
+                      <CardTitle className="text-lg text-gold-500">Applicant Information</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Name:</span>
+                        <span className="text-gold-300">Name:</span>
                         <span className="font-medium">{currentApplication.applicantName}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Email:</span>
+                        <span className="text-gold-300">Email:</span>
                         <span className="font-medium">{currentApplication.email}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Phone:</span>
+                        <span className="text-gold-300">Phone:</span>
                         <span className="font-medium">{currentApplication.phone}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Application Date:</span>
+                        <span className="text-gold-300">Application Date:</span>
                         <span className="font-medium">{currentApplication.applicationDate}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Expected Monthly Sales:</span>
+                        <span className="text-gold-300">Expected Monthly Sales:</span>
                         <span className="font-medium">
-                          RM {currentApplication.expectedMonthlySales.replace("-", " - ")}
+                          Rs {currentApplication.expectedMonthlySales.replace("-", " - ")}
                         </span>
                       </div>
                     </CardContent>
                   </Card>
-
-                  <Card>
+                  <Card className="bg-black border-gold-700 text-gold-100">
                     <CardHeader>
-                      <CardTitle className="text-lg">Business Information</CardTitle>
+                      <CardTitle className="text-lg text-gold-500">Business Information</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Business Registration:</span>
+                        <span className="text-gold-300">Business Registration:</span>
                         <Badge
                           className={
                             currentApplication.hasBusinessRegistration
-                              ? "bg-green-100 text-green-800"
-                              : "bg-gray-100 text-gray-800"
+                              ? "bg-gold-600 text-black"
+                              : "bg-gray-600 text-gray-50"
                           }
                         >
                           {currentApplication.hasBusinessRegistration ? "Yes" : "No"}
@@ -450,40 +486,38 @@ export default function AgentEnrollmentManagement() {
                       </div>
                       {currentApplication.hasBusinessRegistration && (
                         <div className="flex justify-between">
-                          <span className="text-gray-500">Company Name:</span>
+                          <span className="text-gold-300">Company Name:</span>
                           <span className="font-medium">{currentApplication.companyName}</span>
                         </div>
                       )}
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Application Status:</span>
+                        <span className="text-gold-300">Application Status:</span>
                         <Badge className={getStatusColor(currentApplication.status)}>
                           {currentApplication.status.replace("_", " ").charAt(0).toUpperCase() +
                             currentApplication.status.replace("_", " ").slice(1)}
                         </Badge>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-500">Completion:</span>
+                        <span className="text-gold-300">Completion:</span>
                         <span className="font-medium">{currentApplication.completionPercentage}%</span>
                       </div>
                     </CardContent>
                   </Card>
                 </div>
-
                 {currentApplication.notes && (
-                  <Card>
+                  <Card className="bg-black border-gold-700 text-gold-100">
                     <CardHeader>
-                      <CardTitle className="text-lg">Admin Notes</CardTitle>
+                      <CardTitle className="text-lg text-gold-500">Admin Notes</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-700">{currentApplication.notes}</p>
+                      <p className="text-gold-100">{currentApplication.notes}</p>
                     </CardContent>
                   </Card>
                 )}
-
                 {currentApplication.status === "approved" && (
-                  <Card className="border-green-200 bg-green-50">
+                  <Card className="border-green-600 bg-green-900/20 text-green-100">
                     <CardContent className="p-4">
-                      <div className="flex items-center space-x-2 text-green-800">
+                      <div className="flex items-center space-x-2">
                         <CheckCircle className="w-5 h-5" />
                         <div>
                           <p className="font-medium">Application Approved</p>
@@ -495,11 +529,10 @@ export default function AgentEnrollmentManagement() {
                     </CardContent>
                   </Card>
                 )}
-
                 {currentApplication.status === "rejected" && (
-                  <Card className="border-red-200 bg-red-50">
+                  <Card className="border-red-600 bg-red-900/20 text-red-100">
                     <CardContent className="p-4">
-                      <div className="flex items-center space-x-2 text-red-800">
+                      <div className="flex items-center space-x-2">
                         <XCircle className="w-5 h-5" />
                         <div>
                           <p className="font-medium">Application Rejected</p>
@@ -515,18 +548,20 @@ export default function AgentEnrollmentManagement() {
                   </Card>
                 )}
               </TabsContent>
-
-              <TabsContent value="documents" className="space-y-4">
-                <Card>
+              <TabsContent value="documents" className="space-y-4 mt-4">
+                <Card className="bg-black border-gold-700 text-gold-100">
                   <CardHeader>
-                    <CardTitle className="text-lg">Document Status</CardTitle>
+                    <CardTitle className="text-lg text-gold-500">Document Status</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {Object.entries(currentApplication.documents).map(([docType, status]) => (
-                        <div key={docType} className="flex items-center justify-between p-3 border rounded-lg">
+                        <div
+                          key={docType}
+                          className="flex items-center justify-between p-3 border border-gold-800 rounded-lg"
+                        >
                           <div className="flex items-center space-x-3">
-                            <FileText className="w-5 h-5 text-gray-500" />
+                            <FileText className="w-5 h-5 text-gold-300" />
                             <span className="capitalize">{docType.replace(/([A-Z])/g, " $1").trim()}</span>
                           </div>
                           <div className="flex items-center space-x-2">
@@ -536,10 +571,18 @@ export default function AgentEnrollmentManagement() {
                             </Badge>
                             {status === "uploaded" && (
                               <div className="flex space-x-1">
-                                <Button variant="ghost" size="sm">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-gold-300 hover:bg-gold-900/20 hover:text-gold-100"
+                                >
                                   <Eye className="w-4 h-4" />
                                 </Button>
-                                <Button variant="ghost" size="sm">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-gold-300 hover:bg-gold-900/20 hover:text-gold-100"
+                                >
                                   <Download className="w-4 h-4" />
                                 </Button>
                               </div>
@@ -551,23 +594,25 @@ export default function AgentEnrollmentManagement() {
                   </CardContent>
                 </Card>
               </TabsContent>
-
-              <TabsContent value="verification" className="space-y-4">
-                <Card>
+              <TabsContent value="verification" className="space-y-4 mt-4">
+                <Card className="bg-black border-gold-700 text-gold-100">
                   <CardHeader>
-                    <CardTitle className="text-lg">Verification Status</CardTitle>
+                    <CardTitle className="text-lg text-gold-500">Verification Status</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       {Object.entries(currentApplication.verificationStatus).map(([verificationType, status]) => (
-                        <div key={verificationType} className="flex items-center justify-between p-4 border rounded-lg">
+                        <div
+                          key={verificationType}
+                          className="flex items-center justify-between p-4 border border-gold-800 rounded-lg"
+                        >
                           <div className="flex items-center space-x-3">
-                            <Shield className="w-5 h-5 text-gray-500" />
+                            <Shield className="w-5 h-5 text-gold-300" />
                             <div>
                               <span className="font-medium capitalize">
                                 {verificationType.replace(/([A-Z])/g, " $1").trim()} Verification
                               </span>
-                              <p className="text-sm text-gray-500">
+                              <p className="text-sm text-gold-300">
                                 {verificationType === "identity" && "IC and passport verification"}
                                 {verificationType === "business" && "Business registration verification"}
                                 {verificationType === "references" && "Professional references check"}
@@ -581,7 +626,11 @@ export default function AgentEnrollmentManagement() {
                                 (status as string).replace("_", " ").slice(1)}
                             </Badge>
                             {(status === "pending" || status === "in_progress") && (
-                              <Button variant="outline" size="sm">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                              >
                                 Start Verification
                               </Button>
                             )}
@@ -592,76 +641,90 @@ export default function AgentEnrollmentManagement() {
                   </CardContent>
                 </Card>
               </TabsContent>
-
-              <TabsContent value="actions" className="space-y-4">
+              <TabsContent value="actions" className="space-y-4 mt-4">
                 {currentApplication.status === "pending" || currentApplication.status === "under_review" ? (
-                  <Card>
+                  <Card className="bg-black border-gold-700 text-gold-100">
                     <CardHeader>
-                      <CardTitle className="text-lg">Application Actions</CardTitle>
+                      <CardTitle className="text-lg text-gold-500">Application Actions</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="space-y-2">
-                        <Label>Admin Notes</Label>
+                        <Label className="text-gold-300">Admin Notes</Label>
                         <Textarea
                           placeholder="Add notes about this application review..."
                           defaultValue={currentApplication.notes}
+                          className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                         />
                       </div>
-
                       <div className="flex space-x-3">
-                        <Button className="bg-green-600 hover:bg-green-700 flex-1">
+                        <Button className="bg-green-600 hover:bg-green-700 text-white flex-1">
                           <CheckCircle className="w-4 h-4 mr-2" />
                           Approve Application
                         </Button>
-                        <Button variant="destructive" className="flex-1">
+                        <Button variant="destructive" className="flex-1 bg-red-600 hover:bg-red-700 text-white">
                           <XCircle className="w-4 h-4 mr-2" />
                           Reject Application
                         </Button>
                       </div>
-
-                      <Button variant="outline" className="w-full">
+                      <Button
+                        variant="outline"
+                        className="w-full border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                      >
                         <Send className="w-4 h-4 mr-2" />
                         Request Additional Information
                       </Button>
                     </CardContent>
                   </Card>
                 ) : (
-                  <Card>
+                  <Card className="bg-black border-gold-700 text-gold-100">
                     <CardHeader>
-                      <CardTitle className="text-lg">Post-Decision Actions</CardTitle>
+                      <CardTitle className="text-lg text-gold-500">Post-Decision Actions</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       {currentApplication.status === "approved" && (
                         <div className="space-y-3">
-                          <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                          <Button className="w-full bg-gold-600 hover:bg-gold-700 text-black">
                             <Send className="w-4 h-4 mr-2" />
                             Send Welcome Email & Credentials
                           </Button>
-                          <Button variant="outline" className="w-full">
+                          <Button
+                            variant="outline"
+                            className="w-full border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                          >
                             <Award className="w-4 h-4 mr-2" />
                             Assign Training Materials
                           </Button>
-                          <Button variant="outline" className="w-full">
+                          <Button
+                            variant="outline"
+                            className="w-full border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                          >
                             <Users className="w-4 h-4 mr-2" />
                             Create Agent Profile
                           </Button>
                         </div>
                       )}
-
                       {currentApplication.status === "rejected" && (
                         <div className="space-y-3">
-                          <Button variant="outline" className="w-full">
+                          <Button
+                            variant="outline"
+                            className="w-full border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                          >
                             <Send className="w-4 h-4 mr-2" />
                             Send Rejection Email
                           </Button>
-                          <Button variant="outline" className="w-full">
+                          <Button
+                            variant="outline"
+                            className="w-full border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                          >
                             <RefreshCw className="w-4 h-4 mr-2" />
                             Allow Reapplication
                           </Button>
                         </div>
                       )}
-
-                      <Button variant="outline" className="w-full">
+                      <Button
+                        variant="outline"
+                        className="w-full border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                      >
                         <Download className="w-4 h-4 mr-2" />
                         Download Application Report
                       </Button>
@@ -670,9 +733,12 @@ export default function AgentEnrollmentManagement() {
                 )}
               </TabsContent>
             </Tabs>
-
             <DialogFooter>
-              <Button variant="outline" onClick={() => setShowApplicationDialog(false)}>
+              <Button
+                variant="outline"
+                className="border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+                onClick={() => setShowApplicationDialog(false)}
+              >
                 Close
               </Button>
             </DialogFooter>
@@ -773,7 +839,6 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
   const validateStep1 = () => {
     const errors: { [key: string]: string } = {}
     const { personalInfo } = formData
-
     if (!personalInfo.firstName.trim()) errors.firstName = "First name is required"
     if (!personalInfo.lastName.trim()) errors.lastName = "Last name is required"
     if (!personalInfo.email.trim()) errors.email = "Email is required"
@@ -782,7 +847,6 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
     if (!personalInfo.icNumber.trim()) errors.icNumber = "IC/Passport number is required"
     if (!personalInfo.dateOfBirth) errors.dateOfBirth = "Date of birth is required"
     if (!personalInfo.address.trim()) errors.address = "Address is required"
-
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -790,7 +854,6 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
   const validateStep2 = () => {
     const errors: { [key: string]: string } = {}
     const { businessInfo } = formData
-
     if (businessInfo.hasBusinessRegistration) {
       if (!businessInfo.companyName.trim()) errors.companyName = "Company name is required"
       if (!businessInfo.businessRegistrationNumber.trim())
@@ -798,7 +861,6 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
     }
     if (!businessInfo.salesExperience.trim()) errors.salesExperience = "Sales experience is required"
     if (!businessInfo.targetMarket.trim()) errors.targetMarket = "Target market is required"
-
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -806,11 +868,9 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
   const validateStep3 = () => {
     const errors: { [key: string]: string } = {}
     const { documents } = formData
-
     if (!documents.identityCard) errors.identityCard = "Identity card is required"
     if (!documents.passport) errors.passport = "Passport is required"
     if (!documents.bankStatement) errors.bankStatement = "Bank statement is required"
-
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -818,13 +878,11 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
   const validateStep4 = () => {
     const errors: { [key: string]: string } = {}
     const { references } = formData
-
     references.forEach((ref, index) => {
       if (!ref.name.trim()) errors[`reference${index}Name`] = `Reference ${index + 1} name is required`
       if (!ref.phone.trim()) errors[`reference${index}Phone`] = `Reference ${index + 1} phone is required`
       if (!ref.email.trim()) errors[`reference${index}Email`] = `Reference ${index + 1} email is required`
     })
-
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -832,11 +890,9 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
   const validateStep5 = () => {
     const errors: { [key: string]: string } = {}
     const { agreements } = formData
-
     if (!agreements.agreeTerms) errors.agreeTerms = "You must agree to terms and conditions"
     if (!agreements.agreePrivacy) errors.agreePrivacy = "You must agree to privacy policy"
     if (!agreements.agreeCommission) errors.agreeCommission = "You must agree to commission structure"
-
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -844,7 +900,6 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
   // Navigation Functions
   const nextStep = () => {
     let isValid = true
-
     if (currentStep === 1) isValid = validateStep1()
     if (currentStep === 2) isValid = validateStep2()
     if (currentStep === 3) isValid = validateStep3()
@@ -902,11 +957,16 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl max-h-[95vh] overflow-y-auto">
+      <DialogContent className="max-w-6xl max-h-[95vh] overflow-y-auto bg-gradient-to-br from-gray-900 via-black to-gray-900 border-gold-700 text-gold-100">
         <DialogHeader>
-          <DialogTitle className="flex items-center justify-between">
+          <DialogTitle className="flex items-center justify-between text-gold-500">
             <span>Agent Enrollment Application</span>
-            <Button variant="ghost" size="sm" onClick={onClose}>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gold-300 hover:bg-gold-900/20 hover:text-gold-100"
+              onClick={onClose}
+            >
               ×
             </Button>
           </DialogTitle>
@@ -914,11 +974,11 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
 
         {/* Progress Bar */}
         <div className="space-y-2">
-          <div className="flex justify-between text-sm text-gray-600">
+          <div className="flex justify-between text-sm text-gold-300">
             <span>Step {currentStep} of 5</span>
             <span>{Math.round(getStepProgress())}% Complete</span>
           </div>
-          <Progress value={getStepProgress()} className="h-2" />
+          <Progress value={getStepProgress()} className="h-2 bg-gold-900" indicatorClassName="bg-gold-500" />
         </div>
 
         {/* Step Navigation */}
@@ -927,15 +987,12 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
             {steps.map((step) => (
               <div key={step.id} className="flex items-center space-x-2">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    currentStep >= step.id ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-                  }`}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${currentStep >= step.id ? "bg-gold-600 text-black" : "bg-gold-900/20 text-gold-300"
+                    }`}
                 >
                   {currentStep > step.id ? <CheckCircle className="w-4 h-4" /> : step.id}
                 </div>
-                <span
-                  className={`text-sm ${currentStep >= step.id ? "text-blue-600 font-medium" : "text-gray-500"}`}
-                >
+                <span className={`text-sm ${currentStep >= step.id ? "text-gold-500 font-medium" : "text-gold-300"}`}>
                   {step.title}
                 </span>
               </div>
@@ -947,24 +1004,25 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
           {/* Step 1: Personal Information */}
           {currentStep === 1 && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold">Personal Information</h3>
-
-              <Card>
+              <h3 className="text-xl font-semibold text-gold-500">Personal Information</h3>
+              <Card className="bg-black border-gold-700 text-gold-100">
                 <CardHeader>
-                  <CardTitle>Basic Details</CardTitle>
+                  <CardTitle className="text-gold-500">Basic Details</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
-                      <Label htmlFor="title">Title *</Label>
+                      <Label htmlFor="title" className="text-gold-300">
+                        Title *
+                      </Label>
                       <Select
                         value={formData.personalInfo.title}
                         onValueChange={(value) => updateFormData("personalInfo", "title", value)}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                           <SelectValue placeholder="Select title" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-black border-gold-700 text-gold-100">
                           <SelectItem value="mr">Mr.</SelectItem>
                           <SelectItem value="mrs">Mrs.</SelectItem>
                           <SelectItem value="ms">Ms.</SelectItem>
@@ -975,101 +1033,115 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                       </Select>
                     </div>
                     <div>
-                      <Label htmlFor="firstName">First Name *</Label>
+                      <Label htmlFor="firstName" className="text-gold-300">
+                        First Name *
+                      </Label>
                       <Input
                         id="firstName"
                         value={formData.personalInfo.firstName}
                         onChange={(e) => updateFormData("personalInfo", "firstName", e.target.value)}
-                        className={validationErrors.firstName ? "border-red-500" : ""}
+                        className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.firstName ? "border-red-500" : ""}`}
                       />
                       {validationErrors.firstName && (
                         <p className="text-red-500 text-xs mt-1">{validationErrors.firstName}</p>
                       )}
                     </div>
                     <div>
-                      <Label htmlFor="lastName">Last Name *</Label>
+                      <Label htmlFor="lastName" className="text-gold-300">
+                        Last Name *
+                      </Label>
                       <Input
                         id="lastName"
                         value={formData.personalInfo.lastName}
                         onChange={(e) => updateFormData("personalInfo", "lastName", e.target.value)}
-                        className={validationErrors.lastName ? "border-red-500" : ""}
+                        className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.lastName ? "border-red-500" : ""}`}
                       />
                       {validationErrors.lastName && (
                         <p className="text-red-500 text-xs mt-1">{validationErrors.lastName}</p>
                       )}
                     </div>
                   </div>
-
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email" className="text-gold-300">
+                        Email Address *
+                      </Label>
                       <Input
                         id="email"
                         type="email"
                         value={formData.personalInfo.email}
                         onChange={(e) => updateFormData("personalInfo", "email", e.target.value)}
-                        className={validationErrors.email ? "border-red-500" : ""}
+                        className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.email ? "border-red-500" : ""}`}
                       />
                       {validationErrors.email && <p className="text-red-500 text-xs mt-1">{validationErrors.email}</p>}
                     </div>
                     <div>
-                      <Label htmlFor="phone">Phone Number *</Label>
+                      <Label htmlFor="phone" className="text-gold-300">
+                        Phone Number *
+                      </Label>
                       <Input
                         id="phone"
                         value={formData.personalInfo.phone}
                         onChange={(e) => updateFormData("personalInfo", "phone", e.target.value)}
-                        className={validationErrors.phone ? "border-red-500" : ""}
+                        className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.phone ? "border-red-500" : ""}`}
                       />
                       {validationErrors.phone && <p className="text-red-500 text-xs mt-1">{validationErrors.phone}</p>}
                     </div>
                   </div>
-
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
-                      <Label htmlFor="alternatePhone">Alternate Phone</Label>
+                      <Label htmlFor="alternatePhone" className="text-gold-300">
+                        Alternate Phone
+                      </Label>
                       <Input
                         id="alternatePhone"
                         value={formData.personalInfo.alternatePhone}
                         onChange={(e) => updateFormData("personalInfo", "alternatePhone", e.target.value)}
+                        className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="icNumber">IC/Passport Number *</Label>
+                      <Label htmlFor="icNumber" className="text-gold-300">
+                        IC/Passport Number *
+                      </Label>
                       <Input
                         id="icNumber"
                         value={formData.personalInfo.icNumber}
                         onChange={(e) => updateFormData("personalInfo", "icNumber", e.target.value)}
-                        className={validationErrors.icNumber ? "border-red-500" : ""}
+                        className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.icNumber ? "border-red-500" : ""}`}
                       />
                       {validationErrors.icNumber && (
                         <p className="text-red-500 text-xs mt-1">{validationErrors.icNumber}</p>
                       )}
                     </div>
                     <div>
-                      <Label htmlFor="dateOfBirth">Date of Birth *</Label>
+                      <Label htmlFor="dateOfBirth" className="text-gold-300">
+                        Date of Birth *
+                      </Label>
                       <Input
                         id="dateOfBirth"
                         type="date"
                         value={formData.personalInfo.dateOfBirth}
                         onChange={(e) => updateFormData("personalInfo", "dateOfBirth", e.target.value)}
-                        className={validationErrors.dateOfBirth ? "border-red-500" : ""}
+                        className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.dateOfBirth ? "border-red-500" : ""}`}
                       />
                       {validationErrors.dateOfBirth && (
                         <p className="text-red-500 text-xs mt-1">{validationErrors.dateOfBirth}</p>
                       )}
                     </div>
                   </div>
-
                   <div>
-                    <Label htmlFor="nationality">Nationality *</Label>
+                    <Label htmlFor="nationality" className="text-gold-300">
+                      Nationality *
+                    </Label>
                     <Select
                       value={formData.personalInfo.nationality}
                       onValueChange={(value) => updateFormData("personalInfo", "nationality", value)}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                         <SelectValue placeholder="Select nationality" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-black border-gold-700 text-gold-100">
                         <SelectItem value="malaysian">Malaysian</SelectItem>
                         <SelectItem value="singaporean">Singaporean</SelectItem>
                         <SelectItem value="indonesian">Indonesian</SelectItem>
@@ -1080,45 +1152,50 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                   </div>
                 </CardContent>
               </Card>
-
-              <Card>
+              <Card className="bg-black border-gold-700 text-gold-100">
                 <CardHeader>
-                  <CardTitle>Address Information</CardTitle>
+                  <CardTitle className="text-gold-500">Address Information</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <Label htmlFor="address">Street Address *</Label>
+                    <Label htmlFor="address" className="text-gold-300">
+                      Street Address *
+                    </Label>
                     <Textarea
                       id="address"
                       value={formData.personalInfo.address}
                       onChange={(e) => updateFormData("personalInfo", "address", e.target.value)}
-                      className={validationErrors.address ? "border-red-500" : ""}
+                      className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.address ? "border-red-500" : ""}`}
                       rows={2}
                     />
                     {validationErrors.address && (
                       <p className="text-red-500 text-xs mt-1">{validationErrors.address}</p>
                     )}
                   </div>
-
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
-                      <Label htmlFor="city">City</Label>
+                      <Label htmlFor="city" className="text-gold-300">
+                        City
+                      </Label>
                       <Input
                         id="city"
                         value={formData.personalInfo.city}
                         onChange={(e) => updateFormData("personalInfo", "city", e.target.value)}
+                        className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="state">State</Label>
+                      <Label htmlFor="state" className="text-gold-300">
+                        State
+                      </Label>
                       <Select
                         value={formData.personalInfo.state}
                         onValueChange={(value) => updateFormData("personalInfo", "state", value)}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                           <SelectValue placeholder="Select state" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-black border-gold-700 text-gold-100">
                           <SelectItem value="johor">Johor</SelectItem>
                           <SelectItem value="kedah">Kedah</SelectItem>
                           <SelectItem value="kelantan">Kelantan</SelectItem>
@@ -1139,49 +1216,59 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                       </Select>
                     </div>
                     <div>
-                      <Label htmlFor="postalCode">Postal Code</Label>
+                      <Label htmlFor="postalCode" className="text-gold-300">
+                        Postal Code
+                      </Label>
                       <Input
                         id="postalCode"
                         value={formData.personalInfo.postalCode}
                         onChange={(e) => updateFormData("personalInfo", "postalCode", e.target.value)}
+                        className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                       />
                     </div>
                   </div>
                 </CardContent>
               </Card>
-
-              <Card>
+              <Card className="bg-black border-gold-700 text-gold-100">
                 <CardHeader>
-                  <CardTitle>Emergency Contact</CardTitle>
+                  <CardTitle className="text-gold-500">Emergency Contact</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid md:grid-cols-3 gap-4">
                     <div>
-                      <Label htmlFor="emergencyContactName">Contact Name</Label>
+                      <Label htmlFor="emergencyContactName" className="text-gold-300">
+                        Contact Name
+                      </Label>
                       <Input
                         id="emergencyContactName"
                         value={formData.personalInfo.emergencyContactName}
                         onChange={(e) => updateFormData("personalInfo", "emergencyContactName", e.target.value)}
+                        className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="emergencyContactPhone">Contact Phone</Label>
+                      <Label htmlFor="emergencyContactPhone" className="text-gold-300">
+                        Contact Phone
+                      </Label>
                       <Input
                         id="emergencyContactPhone"
                         value={formData.personalInfo.emergencyContactPhone}
                         onChange={(e) => updateFormData("personalInfo", "emergencyContactPhone", e.target.value)}
+                        className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="emergencyContactRelation">Relationship</Label>
+                      <Label htmlFor="emergencyContactRelation" className="text-gold-300">
+                        Relationship
+                      </Label>
                       <Select
                         value={formData.personalInfo.emergencyContactRelation}
                         onValueChange={(value) => updateFormData("personalInfo", "emergencyContactRelation", value)}
                       >
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                           <SelectValue placeholder="Select relationship" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-black border-gold-700 text-gold-100">
                           <SelectItem value="spouse">Spouse</SelectItem>
                           <SelectItem value="parent">Parent</SelectItem>
                           <SelectItem value="sibling">Sibling</SelectItem>
@@ -1200,11 +1287,10 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
           {/* Step 2: Business Information */}
           {currentStep === 2 && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold">Business Information</h3>
-
-              <Card>
+              <h3 className="text-xl font-semibold text-gold-500">Business Information</h3>
+              <Card className="bg-black border-gold-700 text-gold-100">
                 <CardHeader>
-                  <CardTitle>Business Registration</CardTitle>
+                  <CardTitle className="text-gold-500">Business Registration</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center space-x-2">
@@ -1212,51 +1298,58 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                       id="hasBusinessRegistration"
                       checked={formData.businessInfo.hasBusinessRegistration}
                       onCheckedChange={(checked) => updateFormData("businessInfo", "hasBusinessRegistration", checked)}
+                      className="border-gold-600 data-[state=checked]:bg-gold-600 data-[state=checked]:text-black"
                     />
-                    <Label htmlFor="hasBusinessRegistration">I have a registered business</Label>
+                    <Label htmlFor="hasBusinessRegistration" className="text-gold-300">
+                      I have a registered business
+                    </Label>
                   </div>
-
                   {formData.businessInfo.hasBusinessRegistration && (
-                    <div className="space-y-4 border-l-4 border-blue-500 pl-4">
+                    <div className="space-y-4 border-l-4 border-gold-500 pl-4">
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="companyName">Company Name *</Label>
+                          <Label htmlFor="companyName" className="text-gold-300">
+                            Company Name *
+                          </Label>
                           <Input
                             id="companyName"
                             value={formData.businessInfo.companyName}
                             onChange={(e) => updateFormData("businessInfo", "companyName", e.target.value)}
-                            className={validationErrors.companyName ? "border-red-500" : ""}
+                            className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.companyName ? "border-red-500" : ""}`}
                           />
                           {validationErrors.companyName && (
                             <p className="text-red-500 text-xs mt-1">{validationErrors.companyName}</p>
                           )}
                         </div>
                         <div>
-                          <Label htmlFor="businessRegistrationNumber">Business Registration Number *</Label>
+                          <Label htmlFor="businessRegistrationNumber" className="text-gold-300">
+                            Business Registration Number *
+                          </Label>
                           <Input
                             id="businessRegistrationNumber"
                             value={formData.businessInfo.businessRegistrationNumber}
                             onChange={(e) =>
                               updateFormData("businessInfo", "businessRegistrationNumber", e.target.value)
                             }
-                            className={validationErrors.businessRegistrationNumber ? "border-red-500" : ""}
+                            className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.businessRegistrationNumber ? "border-red-500" : ""}`}
                           />
                           {validationErrors.businessRegistrationNumber && (
                             <p className="text-red-500 text-xs mt-1">{validationErrors.businessRegistrationNumber}</p>
                           )}
                         </div>
                       </div>
-
                       <div>
-                        <Label htmlFor="businessType">Business Type</Label>
+                        <Label htmlFor="businessType" className="text-gold-300">
+                          Business Type
+                        </Label>
                         <Select
                           value={formData.businessInfo.businessType}
                           onValueChange={(value) => updateFormData("businessInfo", "businessType", value)}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                             <SelectValue placeholder="Select business type" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="bg-black border-gold-700 text-gold-100">
                             <SelectItem value="sdn-bhd">Sdn Bhd</SelectItem>
                             <SelectItem value="sole-proprietorship">Sole Proprietorship</SelectItem>
                             <SelectItem value="partnership">Partnership</SelectItem>
@@ -1265,36 +1358,42 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                           </SelectContent>
                         </Select>
                       </div>
-
                       <div>
-                        <Label htmlFor="businessAddress">Business Address</Label>
+                        <Label htmlFor="businessAddress" className="text-gold-300">
+                          Business Address
+                        </Label>
                         <Textarea
                           id="businessAddress"
                           value={formData.businessInfo.businessAddress}
                           onChange={(e) => updateFormData("businessInfo", "businessAddress", e.target.value)}
                           rows={2}
+                          className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                         />
                       </div>
-
                       <div className="grid md:grid-cols-3 gap-4">
                         <div>
-                          <Label htmlFor="businessCity">City</Label>
+                          <Label htmlFor="businessCity" className="text-gold-300">
+                            City
+                          </Label>
                           <Input
                             id="businessCity"
                             value={formData.businessInfo.businessCity}
                             onChange={(e) => updateFormData("businessInfo", "businessCity", e.target.value)}
+                            className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="businessState">State</Label>
+                          <Label htmlFor="businessState" className="text-gold-300">
+                            State
+                          </Label>
                           <Select
                             value={formData.businessInfo.businessState}
                             onValueChange={(value) => updateFormData("businessInfo", "businessState", value)}
                           >
-                            <SelectTrigger>
+                            <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                               <SelectValue placeholder="Select state" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="bg-black border-gold-700 text-gold-100">
                               <SelectItem value="johor">Johor</SelectItem>
                               <SelectItem value="kedah">Kedah</SelectItem>
                               <SelectItem value="kelantan">Kelantan</SelectItem>
@@ -1305,25 +1404,29 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                           </Select>
                         </div>
                         <div>
-                          <Label htmlFor="businessPostalCode">Postal Code</Label>
+                          <Label htmlFor="businessPostalCode" className="text-gold-300">
+                            Postal Code
+                          </Label>
                           <Input
                             id="businessPostalCode"
                             value={formData.businessInfo.businessPostalCode}
                             onChange={(e) => updateFormData("businessInfo", "businessPostalCode", e.target.value)}
+                            className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                           />
                         </div>
                       </div>
-
                       <div>
-                        <Label htmlFor="yearsInBusiness">Years in Business</Label>
+                        <Label htmlFor="yearsInBusiness" className="text-gold-300">
+                          Years in Business
+                        </Label>
                         <Select
                           value={formData.businessInfo.yearsInBusiness}
                           onValueChange={(value) => updateFormData("businessInfo", "yearsInBusiness", value)}
                         >
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                             <SelectValue placeholder="Select years" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="bg-black border-gold-700 text-gold-100">
                             <SelectItem value="less-than-1">Less than 1 year</SelectItem>
                             <SelectItem value="1-2">1-2 years</SelectItem>
                             <SelectItem value="3-5">3-5 years</SelectItem>
@@ -1336,82 +1439,88 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                   )}
                 </CardContent>
               </Card>
-
-              <Card>
+              <Card className="bg-black border-gold-700 text-gold-100">
                 <CardHeader>
-                  <CardTitle>Experience & Background</CardTitle>
+                  <CardTitle className="text-gold-500">Experience & Background</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <Label htmlFor="previousTravelExperience">Previous Travel Industry Experience</Label>
+                    <Label htmlFor="previousTravelExperience" className="text-gold-300">
+                      Previous Travel Industry Experience
+                    </Label>
                     <Textarea
                       id="previousTravelExperience"
                       value={formData.businessInfo.previousTravelExperience}
                       onChange={(e) => updateFormData("businessInfo", "previousTravelExperience", e.target.value)}
                       placeholder="Describe your experience in the travel industry..."
                       rows={3}
+                      className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
                     />
                   </div>
-
                   <div>
-                    <Label htmlFor="salesExperience">Sales Experience *</Label>
+                    <Label htmlFor="salesExperience" className="text-gold-300">
+                      Sales Experience *
+                    </Label>
                     <Textarea
                       id="salesExperience"
                       value={formData.businessInfo.salesExperience}
                       onChange={(e) => updateFormData("businessInfo", "salesExperience", e.target.value)}
                       placeholder="Describe your sales experience and achievements..."
                       rows={3}
-                      className={validationErrors.salesExperience ? "border-red-500" : ""}
+                      className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.salesExperience ? "border-red-500" : ""}`}
                     />
                     {validationErrors.salesExperience && (
                       <p className="text-red-500 text-xs mt-1">{validationErrors.salesExperience}</p>
                     )}
                   </div>
-
                   <div>
-                    <Label htmlFor="targetMarket">Target Market *</Label>
+                    <Label htmlFor="targetMarket" className="text-gold-300">
+                      Target Market *
+                    </Label>
                     <Textarea
                       id="targetMarket"
                       value={formData.businessInfo.targetMarket}
                       onChange={(e) => updateFormData("businessInfo", "targetMarket", e.target.value)}
                       placeholder="Describe your target customer base and marketing approach..."
                       rows={3}
-                      className={validationErrors.targetMarket ? "border-red-500" : ""}
+                      className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors.targetMarket ? "border-red-500" : ""}`}
                     />
                     {validationErrors.targetMarket && (
                       <p className="text-red-500 text-xs mt-1">{validationErrors.targetMarket}</p>
                     )}
                   </div>
-
                   <div>
-                    <Label htmlFor="expectedMonthlySales">Expected Monthly Sales (MYR)</Label>
+                    <Label htmlFor="expectedMonthlySales" className="text-gold-300">
+                      Expected Monthly Sales (MYR)
+                    </Label>
                     <Select
                       value={formData.businessInfo.expectedMonthlySales}
                       onValueChange={(value) => updateFormData("businessInfo", "expectedMonthlySales", value)}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                         <SelectValue placeholder="Select expected monthly sales" />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="10000-25000">RM 10,000 - RM 25,000</SelectItem>
-                        <SelectItem value="25000-50000">RM 25,000 - RM 50,000</SelectItem>
-                        <SelectItem value="50000-100000">RM 50,000 - RM 100,000</SelectItem>
-                        <SelectItem value="100000-250000">RM 100,000 - RM 250,000</SelectItem>
-                        <SelectItem value="250000+">RM 250,000+</SelectItem>
+                      <SelectContent className="bg-black border-gold-700 text-gold-100">
+                        <SelectItem value="10000-25000">Rs 10,000 - Rs 25,000</SelectItem>
+                        <SelectItem value="25000-50000">Rs 25,000 - Rs 50,000</SelectItem>
+                        <SelectItem value="50000-100000">Rs 50,000 - Rs 100,000</SelectItem>
+                        <SelectItem value="100000-250000">Rs 100,000 - Rs 250,000</SelectItem>
+                        <SelectItem value="250000+">Rs 250,000+</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-
                   <div>
-                    <Label htmlFor="referralSource">How did you hear about us?</Label>
+                    <Label htmlFor="referralSource" className="text-gold-300">
+                      How did you hear about us?
+                    </Label>
                     <Select
                       value={formData.businessInfo.referralSource}
                       onValueChange={(value) => updateFormData("businessInfo", "referralSource", value)}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-black border-gold-700 text-gold-100">
                         <SelectValue placeholder="Select referral source" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-black border-gold-700 text-gold-100">
                         <SelectItem value="existing-agent">Existing Agent</SelectItem>
                         <SelectItem value="website">Website</SelectItem>
                         <SelectItem value="social-media">Social Media</SelectItem>
@@ -1430,16 +1539,14 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
           {/* Step 3: Document Upload */}
           {currentStep === 3 && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold">Document Upload</h3>
-
-              <Alert>
-                <AlertCircle className="h-4 w-4" />
+              <h3 className="text-xl font-semibold text-gold-500">Document Upload</h3>
+              <Alert className="bg-gold-900/20 border-gold-700 text-gold-100">
+                <AlertCircle className="h-4 w-4 text-gold-500" />
                 <AlertDescription>
                   Please upload clear, high-quality scans or photos of your documents. All required documents must be
                   provided for application processing.
                 </AlertDescription>
               </Alert>
-
               <div className="grid md:grid-cols-2 gap-6">
                 <DocumentUpload
                   title="Identity Card (IC)"
@@ -1448,8 +1555,8 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                   onUpload={(file) => handleDocumentUpload("identityCard", file)}
                   uploadedFile={formData.documents.identityCard}
                   required
+                  error={validationErrors.identityCard}
                 />
-
                 <DocumentUpload
                   title="Passport"
                   description="Upload a clear scan of your passport's main page"
@@ -1457,16 +1564,16 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                   onUpload={(file) => handleDocumentUpload("passport", file)}
                   uploadedFile={formData.documents.passport}
                   required
+                  error={validationErrors.passport}
                 />
-
                 <DocumentUpload
                   title="Business Registration"
                   description="Upload your business registration certificate (if applicable)"
                   acceptedTypes=".pdf,.jpg,.jpeg,.png"
                   onUpload={(file) => handleDocumentUpload("businessRegistration", file)}
                   uploadedFile={formData.documents.businessRegistration}
+                  error={validationErrors.businessRegistration}
                 />
-
                 <DocumentUpload
                   title="Bank Statement"
                   description="Upload your latest 3-month bank statement"
@@ -1474,17 +1581,331 @@ function AgentEnrollmentForm({ isOpen, onClose }: { isOpen: boolean; onClose: ()
                   onUpload={(file) => handleDocumentUpload("bankStatement", file)}
                   uploadedFile={formData.documents.bankStatement}
                   required
+                  error={validationErrors.bankStatement}
                 />
-
                 <DocumentUpload
                   title="Resume/CV"
                   description="Upload your current resume or curriculum vitae"
                   acceptedTypes=".pdf,.doc,.docx"
                   onUpload={(file) => handleDocumentUpload("resume", file)}
                   uploadedFile={formData.documents.resume}
+                  error={validationErrors.resume}
                 />
-
                 <DocumentUpload
                   title="Certificates"
                   description="Upload any relevant certificates or qualifications"
-                  acceptedTypes\
+                  acceptedTypes=".pdf,.jpg,.jpeg,.png"
+                  onUpload={(file) => handleDocumentUpload("certificates", file)}
+                  uploadedFile={formData.documents.certificates}
+                  error={validationErrors.certificates}
+                />
+                <DocumentUpload
+                  title="References"
+                  description="Upload reference letters or contact list (optional)"
+                  acceptedTypes=".pdf,.doc,.docx,.txt"
+                  onUpload={(file) => handleDocumentUpload("references", file)}
+                  uploadedFile={formData.documents.references}
+                  error={validationErrors.references}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Step 4: References */}
+          {currentStep === 4 && (
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-gold-500">References</h3>
+              <Alert className="bg-gold-900/20 border-gold-700 text-gold-100">
+                <AlertCircle className="h-4 w-4 text-gold-500" />
+                <AlertDescription>Please provide details for at least two professional references.</AlertDescription>
+              </Alert>
+              {formData.references.map((ref, index) => (
+                <Card key={index} className="bg-black border-gold-700 text-gold-100">
+                  <CardHeader>
+                    <CardTitle className="text-gold-500">Reference {index + 1}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor={`ref${index}-name`} className="text-gold-300">
+                          Name *
+                        </Label>
+                        <Input
+                          id={`ref${index}-name`}
+                          value={ref.name}
+                          onChange={(e) => updateReference(index, "name", e.target.value)}
+                          className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors[`reference${index}Name`] ? "border-red-500" : ""}`}
+                        />
+                        {validationErrors[`reference${index}Name`] && (
+                          <p className="text-red-500 text-xs mt-1">{validationErrors[`reference${index}Name`]}</p>
+                        )}
+                      </div>
+                      <div>
+                        <Label htmlFor={`ref${index}-company`} className="text-gold-300">
+                          Company
+                        </Label>
+                        <Input
+                          id={`ref${index}-company`}
+                          value={ref.company}
+                          onChange={(e) => updateReference(index, "company", e.target.value)}
+                          className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor={`ref${index}-position`} className="text-gold-300">
+                          Position
+                        </Label>
+                        <Input
+                          id={`ref${index}-position`}
+                          value={ref.position}
+                          onChange={(e) => updateReference(index, "position", e.target.value)}
+                          className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor={`ref${index}-phone`} className="text-gold-300">
+                          Phone *
+                        </Label>
+                        <Input
+                          id={`ref${index}-phone`}
+                          value={ref.phone}
+                          onChange={(e) => updateReference(index, "phone", e.target.value)}
+                          className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors[`reference${index}Phone`] ? "border-red-500" : ""}`}
+                        />
+                        {validationErrors[`reference${index}Phone`] && (
+                          <p className="text-red-500 text-xs mt-1">{validationErrors[`reference${index}Phone`]}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor={`ref${index}-email`} className="text-gold-300">
+                          Email *
+                        </Label>
+                        <Input
+                          id={`ref${index}-email`}
+                          type="email"
+                          value={ref.email}
+                          onChange={(e) => updateReference(index, "email", e.target.value)}
+                          className={`bg-black border-gold-700 text-gold-100 placeholder:text-gold-300 ${validationErrors[`reference${index}Email`] ? "border-red-500" : ""}`}
+                        />
+                        {validationErrors[`reference${index}Email`] && (
+                          <p className="text-red-500 text-xs mt-1">{validationErrors[`reference${index}Email`]}</p>
+                        )}
+                      </div>
+                      <div>
+                        <Label htmlFor={`ref${index}-relationship`} className="text-gold-300">
+                          Relationship
+                        </Label>
+                        <Input
+                          id={`ref${index}-relationship`}
+                          value={ref.relationship}
+                          onChange={(e) => updateReference(index, "relationship", e.target.value)}
+                          className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor={`ref${index}-yearsKnown`} className="text-gold-300">
+                        Years Known
+                      </Label>
+                      <Input
+                        id={`ref${index}-yearsKnown`}
+                        value={ref.yearsKnown}
+                        onChange={(e) => updateReference(index, "yearsKnown", e.target.value)}
+                        className="bg-black border-gold-700 text-gold-100 placeholder:text-gold-300"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {/* Step 5: Terms & Agreements */}
+          {currentStep === 5 && (
+            <div className="space-y-6">
+              <h3 className="text-xl font-semibold text-gold-500">Terms & Agreements</h3>
+              <Card className="bg-black border-gold-700 text-gold-100">
+                <CardHeader>
+                  <CardTitle className="text-gold-500">Important Agreements</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="agreeTerms"
+                      checked={formData.agreements.agreeTerms}
+                      onCheckedChange={(checked) => updateFormData("agreements", "agreeTerms", checked)}
+                      className="border-gold-600 data-[state=checked]:bg-gold-600 data-[state=checked]:text-black mt-1"
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <Label htmlFor="agreeTerms" className="text-gold-300">
+                        I agree to the{" "}
+                        <a href="#" className="text-gold-500 hover:underline">
+                          Terms and Conditions
+                        </a>{" "}
+                        of the Agent Partnership Program. *
+                      </Label>
+                      {validationErrors.agreeTerms && (
+                        <p className="text-red-500 text-xs mt-1">{validationErrors.agreeTerms}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="agreePrivacy"
+                      checked={formData.agreements.agreePrivacy}
+                      onCheckedChange={(checked) => updateFormData("agreements", "agreePrivacy", checked)}
+                      className="border-gold-600 data-[state=checked]:bg-gold-600 data-[state=checked]:text-black mt-1"
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <Label htmlFor="agreePrivacy" className="text-gold-300">
+                        I acknowledge and agree to the{" "}
+                        <a href="#" className="text-gold-500 hover:underline">
+                          Privacy Policy
+                        </a>{" "}
+                        regarding data collection and usage. *
+                      </Label>
+                      {validationErrors.agreePrivacy && (
+                        <p className="text-red-500 text-xs mt-1">{validationErrors.agreePrivacy}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="agreeCommission"
+                      checked={formData.agreements.agreeCommission}
+                      onCheckedChange={(checked) => updateFormData("agreements", "agreeCommission", checked)}
+                      className="border-gold-600 data-[state=checked]:bg-gold-600 data-[state=checked]:text-black mt-1"
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <Label htmlFor="agreeCommission" className="text-gold-300">
+                        I understand and agree to the proposed commission structure and payment terms. *
+                      </Label>
+                      {validationErrors.agreeCommission && (
+                        <p className="text-red-500 text-xs mt-1">{validationErrors.agreeCommission}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="agreeTraining"
+                      checked={formData.agreements.agreeTraining}
+                      onCheckedChange={(checked) => updateFormData("agreements", "agreeTraining", checked)}
+                      className="border-gold-600 data-[state=checked]:bg-gold-600 data-[state=checked]:text-black mt-1"
+                    />
+                    <div className="grid gap-1.5 leading-none">
+                      <Label htmlFor="agreeTraining" className="text-gold-300">
+                        I commit to completing all mandatory training modules as required by the program.
+                      </Label>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+        </div>
+
+        <DialogFooter className="flex flex-col sm:flex-row sm:justify-between gap-2 mt-6">
+          <Button
+            variant="outline"
+            onClick={prevStep}
+            disabled={currentStep === 1}
+            className="border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+          >
+            Previous
+          </Button>
+          {currentStep < steps.length ? (
+            <Button
+              onClick={nextStep}
+              className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-black font-semibold"
+            >
+              Next
+            </Button>
+          ) : (
+            <Button
+              onClick={handleSubmit}
+              className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-black font-semibold"
+            >
+              Submit Application
+            </Button>
+          )}
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+// Document Upload Component
+function DocumentUpload({
+  title,
+  description,
+  acceptedTypes,
+  onUpload,
+  uploadedFile,
+  required,
+  error,
+}: {
+  title: string
+  description: string
+  acceptedTypes: string
+  onUpload: (file: File | null) => void
+  uploadedFile: File | null
+  required?: boolean
+  error?: string
+}) {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null
+    onUpload(file)
+  }
+
+  const handleRemoveFile = () => {
+    onUpload(null)
+  }
+
+  return (
+    <Card className={`bg-black border-gold-700 text-gold-100 ${error ? "border-red-500" : ""}`}>
+      <CardHeader>
+        <CardTitle className="text-lg text-gold-500">
+          {title} {required && <span className="text-red-500">*</span>}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <p className="text-sm text-gold-300">{description}</p>
+        <div className="flex items-center space-x-2">
+          <Label htmlFor={`file-upload-${title.replace(/\s/g, "-")}`} className="cursor-pointer">
+            <Button
+              asChild
+              variant="outline"
+              className="border-gold-600 text-gold-100 hover:bg-gold-900/20 hover:text-gold-500 bg-transparent"
+            >
+              <span>
+                <Upload className="w-4 h-4 mr-2" /> Choose File
+              </span>
+            </Button>
+          </Label>
+          <Input
+            id={`file-upload-${title.replace(/\s/g, "-")}`}
+            type="file"
+            accept={acceptedTypes}
+            onChange={handleFileChange}
+            className="hidden"
+          />
+          {uploadedFile ? (
+            <div className="flex items-center space-x-2">
+              <span className="text-sm font-medium">{uploadedFile.name}</span>
+              <Button variant="ghost" size="sm" onClick={handleRemoveFile} className="text-red-500 hover:bg-red-900/20">
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </div>
+          ) : (
+            <span className="text-sm text-gold-300">No file chosen</span>
+          )}
+        </div>
+        {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      </CardContent>
+    </Card>
+  )
+}
