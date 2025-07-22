@@ -1,30 +1,79 @@
-# Glocal website redesign
+# Glocal Travel - Your Spiritual Journey Begins Here
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+![Glocal Travel Homepage](https://sjc.microlink.io/xJELiKL8C-JYkw01BrOmgqV0W6MGwPFnsITauVjMvA8fp8nImdW9WbjHdkcSzKB0EXPGbTCDFgFMD0VKXTWtyQ.jpeg)
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/ore-das-projects/v0-glocal-website-redesign)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/r9OJqhaPs5v)
+Welcome to Glocal Travel, a modern web application designed to facilitate spiritual journeys, particularly Hajj and Umrah pilgrimages, with expertly crafted packages and a seamless user experience. This project showcases a robust Next.js application with a strong focus on design, responsiveness, and user-centric features.
 
-## Overview
+## Live Demo
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+Experience the application live at: [https://g-local-travels.vercel.app/](https://g-local-travels.vercel.app/)
 
-## Deployment
+## Features
 
-Your project is live at:
+*   **Elegant Black & Gold Theme:** A consistent and visually striking black and gold color palette applied throughout the application, enhancing the premium feel.
+*   **Responsive Design:** Optimized for various screen sizes, ensuring a seamless experience on desktop, tablet, and mobile devices.
+*   **Multi-Role Login Pages:** Dedicated and beautifully designed login/registration pages for Staff, Admin, Customer, and Agent roles, each with enhanced design and responsiveness.
+*   **Dynamic Dashboards:** Comprehensive dashboards for Admin, Agent, Customer, and Staff, providing relevant information and functionalities tailored to each role.
+*   **Packages Listing & Filtering:** A dedicated page to display all available travel packages with advanced filtering options (price, departure month, hotel rating, duration, features) and dynamic content based on URL parameters.
+*   **Consistent Navigation:** A clean and intuitive navigation header (`GlocalNavigation`) across all pages, featuring dropdowns for "About," "Packages," and "Destinations," and a mobile-friendly sheet menu.
+*   **Interactive Forms:** Forms with planned features for loading states, real-time validation, and success animations for a better user experience.
+*   **About & Destinations Pages:** Dedicated sections providing information about the company (CEO speech, Vision & Mission, Organization, Awards) and various travel destinations (Asia, Middle East, Europe, Africa).
 
-**[https://vercel.com/ore-das-projects/v0-glocal-website-redesign](https://vercel.com/ore-das-projects/v0-glocal-website-redesign)**
+## Technologies Used
 
-## Build your app
+*   **Next.js 15 (App Router):** The latest React framework for building performant and scalable web applications with server-first rendering.
+*   **React 19:** For building interactive user interfaces.
+*   **Tailwind CSS:** A utility-first CSS framework for rapid and consistent styling.
+*   **shadcn/ui:** A collection of re-usable components built with Radix UI and Tailwind CSS, providing accessible and customizable UI primitives.
+*   **Lucide React:** For beautiful and consistent iconography.
 
-Continue building your app on:
+## Getting Started
 
-**[https://v0.dev/chat/projects/r9OJqhaPs5v](https://v0.dev/chat/projects/r9OJqhaPs5v)**
+Follow these steps to set up and run the project locally:
 
-## How It Works
+### Prerequisites
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Make sure you have Node.js (v18.x or higher) and npm/yarn installed.
+
+### Installation
+
+1.  **Clone the repository:**
+    \`\`\`bash
+    git clone https://github.com/your-username/glocal-travel.git
+    cd glocal-travel
+    \`\`\`
+    (Replace `your-username` with your actual GitHub username if you've forked the repo.)
+
+2.  **Install dependencies:**
+    \`\`\`bash
+    npm install
+    # or
+    yarn install
+    \`\`\`
+
+3.  **Run the development server:**
+    \`\`\`bash
+    npm run dev
+    # or
+    yarn dev
+    \`\`\`
+
+4.  Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## Project Structure Highlights
+
+*   `app/`: Contains all route-based files (`page.tsx`, `layout.tsx`, `loading.tsx`) for different sections of the application.
+*   `components/`: Houses reusable React components, including custom application-specific components and UI components from shadcn/ui.
+*   `public/`: For static assets like images.
+*   `tailwind.config.ts`: Custom Tailwind CSS configuration, including the defined gold color palette.
+*   `app/globals.css`: Global CSS styles, including shadcn/ui base styles and custom theme variables.
+
+## Contributing
+
+Contributions are welcome! Please feel free to open issues or submit pull requests.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+\`\`\`
+
