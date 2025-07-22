@@ -7,9 +7,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.dev",
+  title: "GLocal-Travel | Book Your Next Destination",
+  description: "Discover and book your next travel destination with GLocal-Travel. Explore the world with ease.",
+  generator: "linkedin.com/in/muhammadshah786",
 }
 
 export default function RootLayout({
